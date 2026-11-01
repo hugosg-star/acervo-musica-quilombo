@@ -1,0 +1,37 @@
+QUILOMBO CI&T | DASHBOARD DE MÚSICA — VERSÃO CORRIGIDA
+====================================================
+
+ARQUIVOS
+- Quilombo_Musica_Dashboard_CORRIGIDO.html: painel, catálogo de 1.073 registros integrado ao HTML.
+- Quilombo_Musica_Acervo_2026.xlsx: Excel de origem, para atualização dos dados.
+- quilombo_musica_catalogo.json: cópia estruturada do catálogo.
+
+COMO USAR
+1. Para consultar imediatamente: abra Quilombo_Musica_Dashboard_CORRIGIDO.html no navegador.
+   A primeira renderização usa o catálogo incorporado ao HTML, mesmo sem rede.
+2. Para sincronizar o Excel ao publicar: envie o HTML e o Excel PARA A MESMA PASTA
+   em uma hospedagem HTTP(S), com nomes de arquivo exatamente iguais aos deste ZIP.
+   O HTML tentará carregar o Excel no início de cada acesso; em falha, utilizará os
+   1.073 registros integrados ao HTML e identificará o fallback na interface.
+3. Para Google Sites: hospede os arquivos em serviço que disponibilize URL HTTPS
+   pública e permita incorporação iframe. No Google Sites: Inserir > Incorporar >
+   Por URL, cole a URL pública do arquivo HTML.
+4. Alternativa para atualização instantânea durante consulta: Configuração > Importar Excel.
+   É necessário que a biblioteca de leitura XLSX seja carregada da CDN externa.
+   CSV funciona sem essa biblioteca e pode ser importado pelo mesmo controle.
+5. Alternativa de URL: use `?xlsx=https%3A%2F%2F...%2Facervo.xlsx` ou
+   `?csv=https%3A%2F%2F...%2Facervo.csv` na URL do dashboard. A origem externa
+   precisa autorizar CORS. A URL do Google Sheets (página /edit) NÃO é um CSV direto.
+6. Imagens: fotos são consultas à Wikimedia/Wikipedia e capas a catálogos online.
+   Imagens podem ser indisponíveis ou requerer verificação de direitos antes do uso.
+
+CORREÇÃO
+- Inicialização dos registros foi deslocada para DEPOIS do utilitário norm(),
+  eliminando ReferenceError que deixava indicadores e galeria sem conteúdo.
+- Nome de arquivo XLSX corrigido para coincidir com o distribuído no ZIP.
+
+NOTAS
+- Os dados integrados garantem abertura inicial e não dispensam publicação do Excel
+  se o objetivo for refletir edições posteriores automaticamente.
+- Se o JavaScript estiver bloqueado pelo provedor, o dashboard exige uma hospedagem
+  que permita scripts (um arquivo HTML inserido como texto no Google Sites não basta).
